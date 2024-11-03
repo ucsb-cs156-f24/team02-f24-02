@@ -33,6 +33,6 @@ const menuItemReviewFixtures = {
       comments: "Terrible, cold and too mild",
     },
   ],
-};
+}; 
 
 export { menuItemReviewFixtures };
