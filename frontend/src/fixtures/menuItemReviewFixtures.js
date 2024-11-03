@@ -32,7 +32,7 @@ const menuItemReviewFixtures = {
       dateReviewed: "2020-07-14T14:12:00",
       comments: "Terrible, cold and too mild",
     },
-  ],
+  ], 
 };
 
 export { menuItemReviewFixtures };
