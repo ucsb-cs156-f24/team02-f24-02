@@ -20,4 +20,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-f24/team02-f24-02
 owner: ucsb-cs156-f24
 repo_name: team02-f24-02
-pull_requests: [{"author":{"id":"U_kgDOBt27wQ","is_bot":false,"login":"vedp3705","name":""},"headRefName":"vp-MenuItemReview-fixturefixtest","number":63,"title":"Vp menu item review fixturefixtest","url":"https://github.com/ucsb-cs156-f24/team02-f24-02/pull/63"},{"author":{"id":"U_kgDOBt27wQ","is_bot":false,"login":"vedp3705","name":""},"headRefName":"vp-MenuItemReview-fixtures","number":62,"title":"MenuItemReviews Fixtures","url":"https://github.com/ucsb-cs156-f24/team02-f24-02/pull/62"},{"author":{"id":"U_kgDOB3Cn0w","is_bot":false,"login":"EduinoMEH","name":"Edwin E. Medrano Villela"},"headRefName":"eduinomeh-UCSBOrganizations-Fixtures","number":61,"title":"Finished UCSBOrganizations Fixtures","url":"https://github.com/ucsb-cs156-f24/team02-f24-02/pull/61"}]
+pull_requests: [{"author":{"id":"U_kgDOB3Cn0w","is_bot":false,"login":"EduinoMEH","name":"Edwin E. Medrano Villela"},"headRefName":"eduinomeh-UCSBOrganizations-Fixtures","number":61,"title":"Finished UCSBOrganizations Fixtures","url":"https://github.com/ucsb-cs156-f24/team02-f24-02/pull/61"}]
