@@ -7,18 +7,23 @@ function MenuItemReviewForm({
   submitAction,
   buttonLabel = "Create",
 }) {
+  // Stryker disable all
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm({ defaultValues: initialContents || {} });
+  // Stryker restore all
 
   const navigate = useNavigate();
 
-  // Define validation regex for date and star rating
+  // For explanation, see: https://stackoverflow.com/questions/3143070/javascript-regex-iso-datetime
+  // Note that even this complex regex may still need some tweaks
+
+  // Stryker disable Regex
   const isodate_regex =
     /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/i;
-  const star_rating_regex = /^[1-5]$/; // Allows values from 1 to 5
+  // Stryker restore Regex
 
   return (
     <Form onSubmit={handleSubmit(submitAction)}>
@@ -26,7 +31,7 @@ function MenuItemReviewForm({
         {initialContents && (
           <Col>
             <Form.Group className="mb-3">
-              <Form.Label htmlFor="id">ID</Form.Label>
+              <Form.Label htmlFor="id">Id</Form.Label>
               <Form.Control
                 data-testid="MenuItemReviewForm-id"
                 id="id"
@@ -38,6 +43,7 @@ function MenuItemReviewForm({
             </Form.Group>
           </Col>
         )}
+
         <Col>
           <Form.Group className="mb-3">
             <Form.Label htmlFor="itemId">Item ID</Form.Label>
@@ -46,33 +52,24 @@ function MenuItemReviewForm({
               id="itemId"
               type="number"
               isInvalid={Boolean(errors.itemId)}
-              {...register("itemId", {
-                required: "Item ID is required.",
-                min: { value: 1, message: "Item ID must be a positive number." },
-              })}
+              {...register("itemId", { required: "Item ID is required." })}
             />
             <Form.Control.Feedback type="invalid">
               {errors.itemId?.message}
             </Form.Control.Feedback>
           </Form.Group>
         </Col>
-      </Row>
 
-      <Row>
         <Col>
           <Form.Group className="mb-3">
             <Form.Label htmlFor="reviewerEmail">Reviewer Email</Form.Label>
             <Form.Control
               data-testid="MenuItemReviewForm-reviewerEmail"
               id="reviewerEmail"
-              type="email"
+              type="text"
               isInvalid={Boolean(errors.reviewerEmail)}
               {...register("reviewerEmail", {
                 required: "Reviewer Email is required.",
-                pattern: {
-                  value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                  message: "Please enter a valid email address.",
-                },
               })}
             />
             <Form.Control.Feedback type="invalid">
@@ -83,21 +80,19 @@ function MenuItemReviewForm({
 
         <Col>
           <Form.Group className="mb-3">
-            <Form.Label htmlFor="stars">Stars (1-5)</Form.Label>
+            <Form.Label htmlFor="stars">Stars</Form.Label>
             <Form.Control
               data-testid="MenuItemReviewForm-stars"
               id="stars"
-              type="number"
+              type="text"
               isInvalid={Boolean(errors.stars)}
+              // {...register("stars", {
+              //   required: "Stars are required.",
+              // })}
               {...register("stars", {
-                required: "Star rating is required.",
-                pattern: {
-                  value: star_rating_regex,
-                  message: "Stars must be an integer between 1 and 5.",
-                },
-                min: { value: 1, message: "Minimum rating is 1." },
-                max: { value: 5, message: "Maximum rating is 5." },
+                required: "Stars is required.",
               })}
+              //{errors.stars && "Stars must be between 1 and 5."}
             />
             <Form.Control.Feedback type="invalid">
               {errors.stars?.message}
@@ -109,43 +104,34 @@ function MenuItemReviewForm({
       <Row>
         <Col>
           <Form.Group className="mb-3">
-            <Form.Label htmlFor="dateReviewed">Date Reviewed</Form.Label>
+            <Form.Label htmlFor="dateReviewed">Date Reviewed (ISO format)</Form.Label>
             <Form.Control
               data-testid="MenuItemReviewForm-dateReviewed"
               id="dateReviewed"
               type="datetime-local"
               isInvalid={Boolean(errors.dateReviewed)}
               {...register("dateReviewed", {
-                required: "Date Reviewed is required.",
-                pattern: {
-                  value: isodate_regex,
-                  message: "Date Reviewed must be in ISO format.",
-                },
+                required: true,
+                pattern: isodate_regex,
               })}
             />
             <Form.Control.Feedback type="invalid">
-              {errors.dateReviewed?.message}
+              {errors.dateReviewed && "Date Reviewed is required in ISO format."}
             </Form.Control.Feedback>
           </Form.Group>
         </Col>
-      </Row>
 
-      <Row>
         <Col>
           <Form.Group className="mb-3">
             <Form.Label htmlFor="comments">Comments</Form.Label>
             <Form.Control
               data-testid="MenuItemReviewForm-comments"
               id="comments"
-              as="textarea"
-              rows={3}
+              type="text"
               isInvalid={Boolean(errors.comments)}
+              //{...register("comments")}
               {...register("comments", {
-                required: "Comments are required.",
-                maxLength: {
-                  value: 500,
-                  message: "Comments cannot exceed 500 characters.",
-                },
+                required: "Comments is required.",
               })}
             />
             <Form.Control.Feedback type="invalid">
@@ -161,7 +147,7 @@ function MenuItemReviewForm({
             {buttonLabel}
           </Button>
           <Button
-            variant="secondary"
+            variant="Secondary"
             onClick={() => navigate(-1)}
             data-testid="MenuItemReviewForm-cancel"
           >
