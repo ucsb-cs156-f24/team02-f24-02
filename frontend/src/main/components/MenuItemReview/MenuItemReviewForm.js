@@ -104,7 +104,9 @@ function MenuItemReviewForm({
       <Row>
         <Col>
           <Form.Group className="mb-3">
-            <Form.Label htmlFor="dateReviewed">Date Reviewed (ISO format)</Form.Label>
+            <Form.Label htmlFor="dateReviewed">
+              Date Reviewed (ISO format)
+            </Form.Label>
             <Form.Control
               data-testid="MenuItemReviewForm-dateReviewed"
               id="dateReviewed"
@@ -116,7 +118,8 @@ function MenuItemReviewForm({
               })}
             />
             <Form.Control.Feedback type="invalid">
-              {errors.dateReviewed && "Date Reviewed is required in ISO format."}
+              {errors.dateReviewed &&
+                "Date Reviewed is required in ISO format."}
             </Form.Control.Feedback>
           </Form.Group>
         </Col>
