@@ -104,7 +104,7 @@ function App() {
           <>
             <Route
               exact
-              path="/menuitemreview"
+              path="/menuitemreviews"
               element={<MenuItemReviewIndexPage />}
             />
           </>

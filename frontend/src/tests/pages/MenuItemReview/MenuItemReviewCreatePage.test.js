@@ -1,4 +1,49 @@
-import { render, screen } from "@testing-library/react";
+// import { render, screen } from "@testing-library/react";
+// import MenuItemReviewCreatePage from "main/pages/MenuItemReview/MenuItemReviewCreatePage";
+// import { QueryClient, QueryClientProvider } from "react-query";
+// import { MemoryRouter } from "react-router-dom";
+
+// import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
+// import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
+// import axios from "axios";
+// import AxiosMockAdapter from "axios-mock-adapter";
+
+// describe("MenuItemReviewCreatePage tests", () => {
+//   const axiosMock = new AxiosMockAdapter(axios);
+
+//   const setupUserOnly = () => {
+//     axiosMock.reset();
+//     axiosMock.resetHistory();
+//     axiosMock
+//       .onGet("/api/currentUser")
+//       .reply(200, apiCurrentUserFixtures.userOnly);
+//     axiosMock
+//       .onGet("/api/systemInfo")
+//       .reply(200, systemInfoFixtures.showingNeither);
+//   };
+
+//   const queryClient = new QueryClient();
+//   test("Renders expected content", async () => {
+//     // arrange
+
+//     setupUserOnly();
+
+//     // act
+//     render(
+//       <QueryClientProvider client={queryClient}>
+//         <MemoryRouter>
+//           <MenuItemReviewCreatePage />
+//         </MemoryRouter>
+//       </QueryClientProvider>,
+//     );
+
+//     // assert
+
+//     await screen.findByText("Create page not yet implemented");
+//   });
+// });
+
+import { render, screen, waitFor, fireEvent } from "@testing-library/react";
 import MenuItemReviewCreatePage from "main/pages/MenuItemReview/MenuItemReviewCreatePage";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
@@ -8,10 +53,33 @@ import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
 import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
 
+const mockToast = jest.fn();
+jest.mock("react-toastify", () => {
+  const originalModule = jest.requireActual("react-toastify");
+  return {
+    __esModule: true,
+    ...originalModule,
+    toast: (x) => mockToast(x),
+  };
+});
+
+const mockNavigate = jest.fn();
+jest.mock("react-router-dom", () => {
+  const originalModule = jest.requireActual("react-router-dom");
+  return {
+    __esModule: true,
+    ...originalModule,
+    Navigate: (x) => {
+      mockNavigate(x);
+      return null;
+    },
+  };
+});
+
 describe("MenuItemReviewCreatePage tests", () => {
   const axiosMock = new AxiosMockAdapter(axios);
 
-  const setupUserOnly = () => {
+  beforeEach(() => {
     axiosMock.reset();
     axiosMock.resetHistory();
     axiosMock
@@ -20,15 +88,10 @@ describe("MenuItemReviewCreatePage tests", () => {
     axiosMock
       .onGet("/api/systemInfo")
       .reply(200, systemInfoFixtures.showingNeither);
-  };
+  });
 
-  const queryClient = new QueryClient();
-  test("Renders expected content", async () => {
-    // arrange
-
-    setupUserOnly();
-
-    // act
+  test("renders without crashing", async () => {
+    const queryClient = new QueryClient();
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
@@ -37,8 +100,78 @@ describe("MenuItemReviewCreatePage tests", () => {
       </QueryClientProvider>,
     );
 
-    // assert
+    await waitFor(() => {
+      expect(
+        screen.getByTestId("MenuItemReviewForm-itemId"),
+      ).toBeInTheDocument();
+    });
+  });
 
-    await screen.findByText("Create page not yet implemented");
+  test("when you fill in the form and hit submit, it makes a request to the backend", async () => {
+    const queryClient = new QueryClient();
+    const menuItemReview = {
+      id: 17,
+      itemId: 20221,
+      reviewerEmail: "test@example.com",
+      stars: 5,
+      dateReviewed: "2022-02-02T00:00",
+      comments: "Groundhog Day",
+    };
+
+    axiosMock.onPost("/api/menuitemreviews/post").reply(202, menuItemReview);
+
+    render(
+      <QueryClientProvider client={queryClient}>
+        <MemoryRouter>
+          <MenuItemReviewCreatePage />
+        </MemoryRouter>
+      </QueryClientProvider>,
+    );
+
+    await waitFor(() => {
+      expect(
+        screen.getByTestId("MenuItemReviewForm-itemId"),
+      ).toBeInTheDocument();
+    });
+
+    const itemIdField = screen.getByTestId("MenuItemReviewForm-itemId");
+    //const reviewerEmailField = screen.getByTestId("MenuItemReviewForm-reviewerEmail",);
+    const reviewerEmailField = screen.getByTestId("MenuItemReviewForm-reviewerEmail");
+    const starsField = screen.getByTestId("MenuItemReviewForm-stars");
+    const dateReviewedField = screen.getByTestId("MenuItemReviewForm-dateReviewed",);
+    //const dateReviewedField = screen.getByTestId("MenuItemReviewForm-dateReviewed");
+    const commentsField = screen.getByTestId("MenuItemReviewForm-comments");
+    const submitButton = screen.getByTestId("MenuItemReviewForm-submit");
+
+    fireEvent.change(itemIdField, { target: { value: "20221" } });
+    fireEvent.change(reviewerEmailField, {
+      target: { value: "test@example.com" },
+    });
+    fireEvent.change(starsField, { target: { value: "3" } });
+    fireEvent.change(dateReviewedField, {
+      target: { value: "2022-02-02T00:00" },
+    });
+    fireEvent.change(commentsField, {
+      target: { value: "Groundhog Day" },
+    });
+
+    expect(submitButton).toBeInTheDocument();
+
+    fireEvent.click(submitButton);
+
+    await waitFor(() => expect(axiosMock.history.post.length).toBe(1));
+
+    expect(axiosMock.history.post[0].params).toEqual({
+      dateReviewed: "2022-02-02T00:00",
+      comments: "Groundhog Day",
+      itemId: "20221",
+      reviewerEmail: "test@example.com",
+      stars: "3",
+    });
+
+    expect(mockToast).toBeCalledWith(
+      "New menuItemReview Created - id: 17 itemId: 20221",
+    );
+    expect(mockNavigate).toBeCalledWith({ to: "/menuitemreviews" });
   });
 });
