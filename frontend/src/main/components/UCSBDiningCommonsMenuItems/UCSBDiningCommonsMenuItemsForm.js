@@ -38,7 +38,9 @@ function UCSBDiningCommonsMenuItemsForm({
 
         <Col>
           <Form.Group className="mb-3">
-            <Form.Label htmlFor="diningCommonsCode;">Dining Commons Code</Form.Label>
+            <Form.Label htmlFor="diningCommonsCode;">
+              Dining Commons Code
+            </Form.Label>
             <Form.Control
               data-testid="UCSBDiningCommonsMenuItemsForm-diningCommonsCode"
               id="diningCommonsCode"
@@ -93,7 +95,10 @@ function UCSBDiningCommonsMenuItemsForm({
 
       <Row>
         <Col>
-          <Button type="submit" data-testid="UCSBDiningCommonsMenuItemsForm-submit">
+          <Button
+            type="submit"
+            data-testid="UCSBDiningCommonsMenuItemsForm-submit"
+          >
             {buttonLabel}
           </Button>
           <Button
