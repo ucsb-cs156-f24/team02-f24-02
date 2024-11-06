@@ -17,13 +17,10 @@ jest.mock("react-toastify", () => {
 describe("UCSBOrganizationsUtils", () => {
   describe("onDeleteSuccess", () => {
     test("It puts the message on console.log and in a toast", () => {
-      // arrange
       const restoreConsole = mockConsole();
 
-      // act
       onDeleteSuccess("abc");
 
-      // assert
       expect(mockToast).toHaveBeenCalledWith("abc");
       expect(console.log).toHaveBeenCalled();
       const message = console.log.mock.calls[0][0];
@@ -34,13 +31,10 @@ describe("UCSBOrganizationsUtils", () => {
   });
   describe("cellToAxiosParamsDelete", () => {
     test("It returns the correct params", () => {
-      // arrange
       const cell = { row: { values: { orgCode: "SKY" } } };
 
-      // act
       const result = cellToAxiosParamsDelete(cell);
 
-      // assert
       expect(result).toEqual({
         url: "/api/ucsborganizations",
         method: "DELETE",
