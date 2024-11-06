@@ -62,10 +62,14 @@ describe("UCSBOrganizationsForm tests", () => {
     expect(await screen.findByTestId(`${testId}-orgCode`)).toBeInTheDocument();
     expect(screen.getByText(`OrgCode`)).toBeInTheDocument();
 
-    expect(await screen.findByTestId(`${testId}-orgTranslationShort`)).toBeInTheDocument();
+    expect(
+      await screen.findByTestId(`${testId}-orgTranslationShort`),
+    ).toBeInTheDocument();
     expect(screen.getByText(`OrgTranslationShort`)).toBeInTheDocument();
 
-    expect(await screen.findByTestId(`${testId}-orgTranslation`)).toBeInTheDocument();
+    expect(
+      await screen.findByTestId(`${testId}-orgTranslation`),
+    ).toBeInTheDocument();
     expect(screen.getByText(`OrgTranslation`)).toBeInTheDocument();
 
     const inactiveDropdown = await screen.findByTestId(`${testId}-inactive`);
@@ -98,7 +102,7 @@ describe("UCSBOrganizationsForm tests", () => {
     );
 
     expect(await screen.findByText(/Create/)).toBeInTheDocument();
-    const submitButton = screen.getByTestId(`${testId}-submit`)
+    const submitButton = screen.getByTestId(`${testId}-submit`);
     fireEvent.click(submitButton);
 
     await screen.findByText(/OrgCode is required/);
