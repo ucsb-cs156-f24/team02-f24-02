@@ -1,16 +1,3 @@
-// import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
-
-// export default function MenuItemReviewCreatePage() {
-//   // Stryker disable all : placeholder for future implementation
-//   return (
-//     <BasicLayout>
-//       <div className="pt-2">
-//         <h1>Create page not yet implemented</h1>
-//       </div>
-//     </BasicLayout>
-//   );
-// }
-
 import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
 import MenuItemReviewForm from "main/components/MenuItemReview/MenuItemReviewForm";
 import { Navigate } from "react-router-dom";
