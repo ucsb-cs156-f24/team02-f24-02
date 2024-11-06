@@ -46,7 +46,7 @@ describe("UCSBOrganizationsForm tests", () => {
       <QueryClientProvider client={queryClient}>
         <Router>
           <UCSBOrganizationsForm
-            initialContents={ucsbOrganizationsFixtures.oneUCSBOrganization}
+            initialContents={ucsbOrganizationsFixtures.oneUCSBOrganization[0]}
           />
         </Router>
       </QueryClientProvider>,
@@ -61,19 +61,27 @@ describe("UCSBOrganizationsForm tests", () => {
 
     expect(await screen.findByTestId(`${testId}-orgCode`)).toBeInTheDocument();
     expect(screen.getByText(`OrgCode`)).toBeInTheDocument();
+    expect(screen.getByTestId(`${testId}-orgCode`)).toHaveValue("SKY ");
 
     expect(
       await screen.findByTestId(`${testId}-orgTranslationShort`),
     ).toBeInTheDocument();
     expect(screen.getByText(`OrgTranslationShort`)).toBeInTheDocument();
+    expect(screen.getByTestId(`${testId}-orgTranslationShort`)).toHaveValue(
+      "SKY DIVING ORG",
+    );
 
     expect(
       await screen.findByTestId(`${testId}-orgTranslation`),
     ).toBeInTheDocument();
     expect(screen.getByText(`OrgTranslation`)).toBeInTheDocument();
+    expect(screen.getByTestId(`${testId}-orgTranslation`)).toHaveValue(
+      "SKY DIVING ORGANIZATION",
+    );
 
     const inactiveDropdown = await screen.findByTestId(`${testId}-inactive`);
     expect(inactiveDropdown).toBeInTheDocument();
+    expect(screen.getByTestId(`${testId}-inactive`)).toHaveValue("false");
   });
 
   test("that navigate(-1) is called when Cancel is clicked", async () => {
