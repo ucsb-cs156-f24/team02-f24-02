@@ -118,8 +118,7 @@ function MenuItemReviewForm({
               })}
             />
             <Form.Control.Feedback type="invalid">
-              {errors.dateReviewed &&
-                "Date Reviewed is required."}
+              {errors.dateReviewed && "Date Reviewed is required."}
             </Form.Control.Feedback>
           </Form.Group>
         </Col>
