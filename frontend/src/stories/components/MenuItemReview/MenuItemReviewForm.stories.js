@@ -11,7 +11,7 @@ const Template = (args) => {
   return <MenuItemReviewForm {...args} />;
 };
 
-export const Create = Template.bind({});
+export const Create = Template.bind({})
 
 Create.args = {
   buttonLabel: "Create",
