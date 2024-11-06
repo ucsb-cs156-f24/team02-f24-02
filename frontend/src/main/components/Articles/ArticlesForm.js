@@ -56,7 +56,8 @@ function ArticlesForm({
               id="title"
               type="text"
               isInvalid={Boolean(errors.title)}
-              {...register("title", { required: "Title is required." })}
+              {...register("title", { 
+                required: "Title is required."})}
             />
             <Form.Control.Feedback type="invalid">
               {errors.title?.message}
@@ -74,10 +75,6 @@ function ArticlesForm({
               isInvalid={Boolean(errors.url)}
               {...register("url", {
                 required: "URL is required.",
-                pattern: {
-                  value: /^(https?:\/\/)?([\w-]+)+([\w-./?%&=]*)?$/,
-                  message: "Please enter a valid URL.",
-                },
               })}
             />
             <Form.Control.Feedback type="invalid">
@@ -118,10 +115,6 @@ function ArticlesForm({
               isInvalid={Boolean(errors.email)}
               {...register("email", {
                 required: "Email is required.",
-                pattern: {
-                  value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                  message: "Please enter a valid email address.",
-                },
               })}
             />
             <Form.Control.Feedback type="invalid">
@@ -146,7 +139,7 @@ function ArticlesForm({
             <Form.Control.Feedback type="invalid">
               {errors.dateAdded && "date Added is required. "}
               {errors.dateAdded?.type === "pattern" &&
-                "dateAdded must be in the format YYYYQ, e.g. 20224 for Fall 2022"}
+                "dateAdded must be in the ISODATE format"}
             </Form.Control.Feedback>
           </Form.Group>
         </Col>
