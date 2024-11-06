@@ -44,7 +44,7 @@ function UCSBDiningCommonsMenuItemsForm({
               id="diningCommonsCode"
               type="text"
               {...register("diningCommonsCode", {
-                required: true,
+                required: "Dining Commons Code is required.",
               })}
             />
             <Form.Control.Feedback type="invalid">
@@ -61,7 +61,7 @@ function UCSBDiningCommonsMenuItemsForm({
               type="text"
               isInvalid={Boolean(errors.name)}
               {...register("name", {
-                required: true,
+                required: "Name is required.",
               })}
             />
             <Form.Control.Feedback type="invalid">
