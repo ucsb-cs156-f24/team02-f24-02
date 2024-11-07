@@ -1,8 +1,7 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 
-import RestaurantForm from "main/components/Articles/ArticlesForm";
-import { articleFixtures, restaurantFixtures } from "fixtures/articlesFixtures";
+import { articleFixtures } from "fixtures/articlesFixtures";
 
 import { QueryClient, QueryClientProvider } from "react-query";
 import ArticlesForm from "main/components/Articles/ArticlesForm";
@@ -25,7 +24,7 @@ describe("ArticlesForm tests", () => {
       render(
         <QueryClientProvider client={queryClient}>
           <Router>
-            <RestaurantForm />
+            <ArticlesForm />
           </Router>
         </QueryClientProvider>,
       );
@@ -87,9 +86,12 @@ describe("ArticlesForm tests", () => {
       const submitButton = screen.getByText(/Create/);
       fireEvent.click(submitButton);
   
-      await screen.findByText(/Name is required/);
-      expect(screen.getByText(/Description is required/)).toBeInTheDocument();
-  
+      await screen.findByText(/Title is required/);
+      expect(screen.getByText(/Url is required/)).toBeInTheDocument();
+      expect(screen.getByText(/Explanation is required/)).toBeInTheDocument();
+      expect(screen.getByText(/Email is required/)).toBeInTheDocument();
+      expect(screen.getByText(/Date added is required/)).toBeInTheDocument();
+      expect(screen.getByText(/Date added must be in the ISODATE format/)).toBeInTheDocument();
       const nameInput = screen.getByTestId(`${testId}-name`);
       fireEvent.change(nameInput, { target: { value: "a".repeat(31) } });
       fireEvent.click(submitButton);

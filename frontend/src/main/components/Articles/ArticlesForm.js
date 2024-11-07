@@ -137,9 +137,9 @@ function ArticlesForm({
               })}
             />
             <Form.Control.Feedback type="invalid">
-              {errors.dateAdded && "date Added is required. "}
+              {errors.dateAdded && "Date added is required. "}
               {errors.dateAdded?.type === "pattern" &&
-                "dateAdded must be in the ISODATE format"}
+                "Date added must be in the ISODATE format"}
             </Form.Control.Feedback>
           </Form.Group>
         </Col>
