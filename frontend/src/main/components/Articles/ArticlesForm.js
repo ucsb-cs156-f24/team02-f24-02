@@ -56,8 +56,9 @@ function ArticlesForm({
               id="title"
               type="text"
               isInvalid={Boolean(errors.title)}
-              {...register("title", { 
-                required: "Title is required."})}
+              {...register("title", {
+                required: "Title is required.",
+              })}
             />
             <Form.Control.Feedback type="invalid">
               {errors.title?.message}
