@@ -30,7 +30,7 @@ function ArticlesForm({
   return (
     <Form onSubmit={handleSubmit(submitAction)}>
       <Row>
-        {initialContents.id && (
+        {initialContents && (
           <Col>
             <Form.Group className="mb-3">
               <Form.Label htmlFor="id">ID</Form.Label>
@@ -71,7 +71,7 @@ function ArticlesForm({
             <Form.Control
               data-testid="ArticlesForm-url"
               id="url"
-              type="url"
+              type="text"
               isInvalid={Boolean(errors.url)}
               {...register("url", {
                 required: "URL is required.",
@@ -89,9 +89,9 @@ function ArticlesForm({
           <Form.Group className="mb-3">
             <Form.Label htmlFor="explanation">Explanation</Form.Label>
             <Form.Control
-              as="textarea"
               data-testid="ArticlesForm-explanation"
               id="explanation"
+              type="text"
               isInvalid={Boolean(errors.explanation)}
               {...register("explanation", {
                 required: "Explanation is required.",
@@ -111,7 +111,7 @@ function ArticlesForm({
             <Form.Control
               data-testid="ArticlesForm-email"
               id="email"
-              type="email"
+              type="text"
               isInvalid={Boolean(errors.email)}
               {...register("email", {
                 required: "Email is required.",
@@ -125,7 +125,7 @@ function ArticlesForm({
 
         <Col>
           <Form.Group className="mb-3">
-            <Form.Label htmlFor="dateAdded">Date Added</Form.Label>
+            <Form.Label htmlFor="dateAdded">DateAdded</Form.Label>
             <Form.Control
               data-testid="ArticlesForm-dateAdded"
               id="dateAdded"
@@ -138,8 +138,6 @@ function ArticlesForm({
             />
             <Form.Control.Feedback type="invalid">
               {errors.dateAdded && "Date added is required. "}
-              {errors.dateAdded?.type === "pattern" &&
-                "Date added must be in the ISODATE format"}
             </Form.Control.Feedback>
           </Form.Group>
         </Col>

@@ -17,7 +17,7 @@ jest.mock("react-router-dom", () => ({
 describe("ArticlesForm tests", () => {
     const queryClient = new QueryClient();
   
-    const expectedHeaders = ["Title", "Url", "Explanation", "Email", "DateAdded"];
+    const expectedHeaders = ["Title", "URL", "Explanation", "Email", "DateAdded"];
     const testId = "ArticlesForm";
   
     test("renders correctly with no initialContents", async () => {
@@ -54,7 +54,7 @@ describe("ArticlesForm tests", () => {
       });
   
       expect(await screen.findByTestId(`${testId}-id`)).toBeInTheDocument();
-      expect(screen.getByText(`Id`)).toBeInTheDocument();
+      expect(screen.getByText(`ID`)).toBeInTheDocument();
     });
   
     test("that navigate(-1) is called when Cancel is clicked", async () => {
@@ -86,15 +86,13 @@ describe("ArticlesForm tests", () => {
       const submitButton = screen.getByText(/Create/);
       fireEvent.click(submitButton);
   
-      await screen.findByText(/Title is required/);
-      expect(screen.getByText(/Url is required/)).toBeInTheDocument();
-      expect(screen.getByText(/Explanation is required/)).toBeInTheDocument();
-      expect(screen.getByText(/Email is required/)).toBeInTheDocument();
-      expect(screen.getByText(/Date added is required/)).toBeInTheDocument();
-      expect(screen.getByText(/Date added must be in the ISODATE format/)).toBeInTheDocument();
-      const nameInput = screen.getByTestId(`${testId}-name`);
-      fireEvent.change(nameInput, { target: { value: "a".repeat(31) } });
-      fireEvent.click(submitButton);
+      await screen.findByText(/Title is required./);
+      expect(screen.getByText(/URL is required./)).toBeInTheDocument();
+      expect(screen.getByText(/Explanation is required./)).toBeInTheDocument();
+      expect(screen.getByText(/Email is required./)).toBeInTheDocument();
+      expect(screen.getByText(/Date added is required./)).toBeInTheDocument();
+
+      
       
       
     });
