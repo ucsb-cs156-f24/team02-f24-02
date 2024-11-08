@@ -401,7 +401,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Button, Form, Row, Col} from "react-bootstrap";
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Button, Form, Row, Col } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 &nbsp;
@@ -433,97 +433,97 @@ function RestaurantForm({
 &nbsp;
   return (
     &lt;Form onSubmit={handleSubmit(submitAction)}&gt;
-      &lt;Row&gt;
       {initialContents &amp;&amp; (
         &lt;Col&gt;
-        &lt;Form.Group className="mb-3"&gt;
-          &lt;Form.Label htmlFor="id"&gt;Id&lt;/Form.Label&gt;
-          &lt;Form.Control
-            data-testid={testIdPrefix + "-id"}
-            id="id"
-            type="text"
-            {...register("id")}
-            value={initialContents.id}
-            disabled
-          /&gt;
-        &lt;/Form.Group&gt;
+          &lt;Form.Group className="mb-3"&gt;
+            &lt;Form.Label htmlFor="id"&gt;Id&lt;/Form.Label&gt;
+            &lt;Form.Control
+              data-testid={testIdPrefix + "-id"}
+              id="id"
+              type="text"
+              {...register("id")}
+              value={initialContents.id}
+              disabled
+            /&gt;
+          &lt;/Form.Group&gt;
         &lt;/Col&gt;
       )}
-      &lt;Col&gt;
       &lt;Row&gt;
-      &lt;Form.Group className="mb-3"&gt;
-        &lt;Form.Label htmlFor="requesterEmail"&gt;Requester Email&lt;/Form.Label&gt;
-        &lt;Form.Control
-          data-testid={testIdPrefix + "-requesterEmail"}
-          id="requesterEmail"
-          type="text"
-          isInvalid={Boolean(errors.requesterEmail)}
-          {...register("requesterEmail", {
-            required: "Requester Email is required",
-          })}
-        /&gt;
-        &lt;Form.Control.Feedback type="invalid"&gt;
-          {errors.requesterEmail?.message}
-        &lt;/Form.Control.Feedback&gt;
-      &lt;/Form.Group&gt;
-      &lt;/Row&gt;
-      &lt;Row&gt;
-      &lt;Form.Group className="mb-3"&gt;
-        &lt;Form.Label htmlFor="professorEmail"&gt;Professor Email&lt;/Form.Label&gt;
-        &lt;Form.Control
-          data-testid={testIdPrefix + "-professorEmail"}
-          id="professorEmail"
-          type="text"
-          isInvalid={Boolean(errors.professorEmail)}
-          {...register("professorEmail", {
-            required: "Professor Email is required",
-          })}
-        /&gt;
-        
-        &lt;Form.Control.Feedback type="invalid"&gt;
-          {errors.professorEmail?.message}
-        &lt;/Form.Control.Feedback&gt;
-      &lt;/Form.Group&gt;
-      &lt;/Row&gt;
-      &lt;/Col&gt;
-      &lt;Col&gt;
-      &lt;Row&gt;
-      &lt;Form.Group className="mb-3"&gt;
-        &lt;Form.Label htmlFor="dateRequested"&gt;Date Requested&lt;/Form.Label&gt;
-        &lt;Form.Control
-          data-testid={testIdPrefix + "-dateRequested"}
-          id="dateRequested"
-          type="datetime-local"
-          isInvalid={Boolean(errors.localDateTime)}
-          {...register("dateRequested", {
-            required: "Date Requested is required",
-            pattern: isodate_regex,
-          })}
-        /&gt;
-        &lt;Form.Control.Feedback type="invalid"&gt;
-          {errors.dateRequested?.message}
-        &lt;/Form.Control.Feedback&gt;
-      &lt;/Form.Group&gt;
-      &lt;/Row&gt;
-      &lt;Row&gt;
-      &lt;Form.Group className="mb-3"&gt;
-        &lt;Form.Label htmlFor="dateNeeded"&gt;Date Needed&lt;/Form.Label&gt;
-        &lt;Form.Control
-          data-testid={testIdPrefix + "-dateNeeded"}
-          id="dateNeeded"
-          type="datetime-local"
-          isInvalid={Boolean(errors.localDateTime)}
-          {...register("dateNeeded", {
-            required: "Date Needed is required",
-            pattern: isodate_regex,
-          })}
-        /&gt;
-        &lt;Form.Control.Feedback type="invalid"&gt;
-          {errors.dateNeeded?.message}
-        &lt;/Form.Control.Feedback&gt;
-      &lt;/Form.Group&gt;
-      &lt;/Row&gt;
-      &lt;/Col&gt;
+        &lt;Col&gt;
+          &lt;Row&gt;
+            &lt;Form.Group className="mb-3"&gt;
+              &lt;Form.Label htmlFor="requesterEmail"&gt;Requester Email&lt;/Form.Label&gt;
+              &lt;Form.Control
+                data-testid={testIdPrefix + "-requesterEmail"}
+                id="requesterEmail"
+                type="text"
+                isInvalid={Boolean(errors.requesterEmail)}
+                {...register("requesterEmail", {
+                  required: "Requester Email is required",
+                })}
+              /&gt;
+              &lt;Form.Control.Feedback type="invalid"&gt;
+                {errors.requesterEmail?.message}
+              &lt;/Form.Control.Feedback&gt;
+            &lt;/Form.Group&gt;
+          &lt;/Row&gt;
+          &lt;Row&gt;
+            &lt;Form.Group className="mb-3"&gt;
+              &lt;Form.Label htmlFor="professorEmail"&gt;Professor Email&lt;/Form.Label&gt;
+              &lt;Form.Control
+                data-testid={testIdPrefix + "-professorEmail"}
+                id="professorEmail"
+                type="text"
+                isInvalid={Boolean(errors.professorEmail)}
+                {...register("professorEmail", {
+                  required: "Professor Email is required",
+                })}
+              /&gt;
+&nbsp;
+              &lt;Form.Control.Feedback type="invalid"&gt;
+                {errors.professorEmail?.message}
+              &lt;/Form.Control.Feedback&gt;
+            &lt;/Form.Group&gt;
+          &lt;/Row&gt;
+        &lt;/Col&gt;
+        &lt;Col&gt;
+          &lt;Row&gt;
+            &lt;Form.Group className="mb-3"&gt;
+              &lt;Form.Label htmlFor="dateRequested"&gt;Date Requested&lt;/Form.Label&gt;
+              &lt;Form.Control
+                data-testid={testIdPrefix + "-dateRequested"}
+                id="dateRequested"
+                type="datetime-local"
+                isInvalid={Boolean(errors.localDateTime)}
+                {...register("dateRequested", {
+                  required: "Date Requested is required",
+                  pattern: isodate_regex,
+                })}
+              /&gt;
+              &lt;Form.Control.Feedback type="invalid"&gt;
+                {errors.dateRequested?.message}
+              &lt;/Form.Control.Feedback&gt;
+            &lt;/Form.Group&gt;
+          &lt;/Row&gt;
+          &lt;Row&gt;
+            &lt;Form.Group className="mb-3"&gt;
+              &lt;Form.Label htmlFor="dateNeeded"&gt;Date Needed&lt;/Form.Label&gt;
+              &lt;Form.Control
+                data-testid={testIdPrefix + "-dateNeeded"}
+                id="dateNeeded"
+                type="datetime-local"
+                isInvalid={Boolean(errors.localDateTime)}
+                {...register("dateNeeded", {
+                  required: "Date Needed is required",
+                  pattern: isodate_regex,
+                })}
+              /&gt;
+              &lt;Form.Control.Feedback type="invalid"&gt;
+                {errors.dateNeeded?.message}
+              &lt;/Form.Control.Feedback&gt;
+            &lt;/Form.Group&gt;
+          &lt;/Row&gt;
+        &lt;/Col&gt;
         &lt;Form.Group className="mb-3"&gt;
           &lt;Form.Label htmlFor="explanation"&gt;Explanation&lt;/Form.Label&gt;
           &lt;Form.Control
@@ -577,7 +577,7 @@ export default RestaurantForm;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-11-08T02:03:47.896Z
+                at 2024-11-08T02:09:27.571Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
