@@ -102,11 +102,17 @@ describe("HelpRequestForm tests", () => {
     const explanationField = screen.getByTestId("HelpRequestForm-explanation");
     const submitButton = screen.getByTestId("HelpRequestForm-submit");
 
-    fireEvent.change(requesterEmailField, { target: { value: "cgaucho@ucsb.edu" }, });
-    fireEvent.change(teamIdField, { target: { value: "s22-5pm-3" } });    
+    fireEvent.change(requesterEmailField, {
+      target: { value: "cgaucho@ucsb.edu" },
+    });
+    fireEvent.change(teamIdField, { target: { value: "s22-5pm-3" } });
     fireEvent.change(tableOrBreakoutRoomField, { target: { value: "7" } });
-    fireEvent.change(requestTimeField, {  target: { value: "2022-01-03T00:00:00" }, });
-    fireEvent.change(explanationField, {  target: { value: "Need help with Swagger-ui" }, });
+    fireEvent.change(requestTimeField, {
+      target: { value: "2022-01-03T00:00:00" },
+    });
+    fireEvent.change(explanationField, {
+      target: { value: "Need help with Swagger-ui" },
+    });
     fireEvent.change(solvedField, { target: { value: false } });
 
     fireEvent.click(submitButton);

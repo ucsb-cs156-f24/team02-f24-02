@@ -46,23 +46,23 @@ function HelpRequestForm({
         )}
 
         <Col>
-            <Form.Group className="mb-3">
-                <Form.Label htmlFor="requesterEmail">Requester Email</Form.Label>
-                <Form.Control
-                data-testid="HelpRequestForm-requesterEmail"
-                id="requesterEmail"
-                type="text"
-                isInvalid={Boolean(errors.requesterEmail)}
-                {...register("requesterEmail", {
-                    required: "The requester email is required",
-                })}
-                />
-                <Form.Control.Feedback type="invalid">
-                {errors.requesterEmail?.message}
-                </Form.Control.Feedback>
-            </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label htmlFor="requesterEmail">Requester Email</Form.Label>
+            <Form.Control
+              data-testid="HelpRequestForm-requesterEmail"
+              id="requesterEmail"
+              type="text"
+              isInvalid={Boolean(errors.requesterEmail)}
+              {...register("requesterEmail", {
+                required: "The requester email is required",
+              })}
+            />
+            <Form.Control.Feedback type="invalid">
+              {errors.requesterEmail?.message}
+            </Form.Control.Feedback>
+          </Form.Group>
         </Col>
-        
+
         <Col>
           <Form.Group className="mb-3">
             <Form.Label htmlFor="teamId">Team ID</Form.Label>
