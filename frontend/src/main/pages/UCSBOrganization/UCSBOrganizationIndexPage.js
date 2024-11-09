@@ -41,7 +41,7 @@ export default function UCSBOrganizationIndexPage() {
         {createButton()}
         <h1>UCSBOrganization</h1>
         <UCSBOrganizationTable
-          restaurants={ucsborganizations}
+          UCSBOrganizations={ucsborganizations}
           currentUser={currentUser}
         />
       </div>
