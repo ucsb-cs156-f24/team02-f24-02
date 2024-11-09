@@ -71,7 +71,9 @@ describe("UCSBOrganizationsCreatePage tests", () => {
       inactive: false,
     };
 
-    axiosMock.onPost("/api/ucsborganizations/post").reply(202, ucsbOrganization);
+    axiosMock
+      .onPost("/api/ucsborganizations/post")
+      .reply(202, ucsbOrganization);
 
     render(
       <QueryClientProvider client={queryClient}>
@@ -88,7 +90,9 @@ describe("UCSBOrganizationsCreatePage tests", () => {
     const orgCodeInput = screen.getByLabelText("OrgCode");
     expect(orgCodeInput).toBeInTheDocument();
 
-    const orgTranslationShortInput = screen.getByLabelText("OrgTranslationShort");
+    const orgTranslationShortInput = screen.getByLabelText(
+      "OrgTranslationShort",
+    );
     expect(orgTranslationShortInput).toBeInTheDocument();
 
     const orgTranslationInput = screen.getByLabelText("OrgTranslation");
@@ -104,7 +108,9 @@ describe("UCSBOrganizationsCreatePage tests", () => {
     fireEvent.change(orgTranslationShortInput, {
       target: { value: "SKY DIVING ORG" },
     });
-    fireEvent.change(orgTranslationInput, { target: { value: "SKY DIVING ORGANIZATION" } });
+    fireEvent.change(orgTranslationInput, {
+      target: { value: "SKY DIVING ORGANIZATION" },
+    });
     fireEvent.change(inactiveInput, { target: { value: "false" } });
     fireEvent.click(createButton);
 
