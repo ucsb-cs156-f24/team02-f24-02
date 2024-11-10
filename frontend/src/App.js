@@ -11,9 +11,9 @@ import RestaurantIndexPage from "main/pages/Restaurants/RestaurantIndexPage";
 import RestaurantCreatePage from "main/pages/Restaurants/RestaurantCreatePage";
 import RestaurantEditPage from "main/pages/Restaurants/RestaurantEditPage";
 
-import ArticleIndexPage from "main/pages/Articles/ArticleIndexPage";
-import ArticleCreatePage from "main/pages/Articles/ArticleCreatePage";
-import ArticleEditPage from "main/pages/Placeholder/ArticleEditPage";
+import ArticleIndexPage from "main/pages/Articles/ArticlesIndexPage";
+import ArticleCreatePage from "main/pages/Articles/ArticlesCreatePage";
+import ArticleEditPage from "main/pages/Articles/ArticlesEditPage";
 
 import PlaceholderIndexPage from "main/pages/Placeholder/PlaceholderIndexPage";
 import PlaceholderCreatePage from "main/pages/Placeholder/PlaceholderCreatePage";
