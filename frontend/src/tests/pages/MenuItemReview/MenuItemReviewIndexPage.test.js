@@ -18,12 +18,10 @@ jest.mock("react-toastify", () => {
     toast: (x) => mockToast(x),
   };
 });
-
 describe("MenuItemReviewIndexPage tests", () => {
   const axiosMock = new AxiosMockAdapter(axios);
 
   const testId = "MenuItemReviewTable";
-
   const setupUserOnly = () => {
     axiosMock.reset();
     axiosMock.resetHistory();
