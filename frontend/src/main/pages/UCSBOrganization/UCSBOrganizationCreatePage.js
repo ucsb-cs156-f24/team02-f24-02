@@ -30,7 +30,6 @@ export default function UCSBOrganizationCreatePage({ storybook = false }) {
   );
 
   const { isSuccess } = mutation;
-
   const onSubmit = async (data) => {
     mutation.mutate(data);
   };
