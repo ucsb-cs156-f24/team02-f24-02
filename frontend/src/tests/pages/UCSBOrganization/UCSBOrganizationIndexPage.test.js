@@ -131,7 +131,6 @@ describe("UCSBOrganizationIndexPage tests", () => {
     setupUserOnly();
 
     axiosMock.onGet("/api/ucsborganizations/all").timeout();
-
     const restoreConsole = mockConsole();
 
     render(
