@@ -38,7 +38,6 @@ import java.time.LocalDateTime;
 public class MenuItemReviewController extends ApiController {
 
     @Autowired
-    //UCSBDateRepository ucsbDateRepository;
     MenuItemReviewRepository menuItemReviewRepository;
 
     /**
@@ -60,32 +59,29 @@ public class MenuItemReviewController extends ApiController {
     @PostMapping("/post")
     public MenuItemReview postMenuItemReview(
             @Parameter(name="itemId") @RequestParam long itemId,
-            //@Parameter(name="reviewerEmail") @RequestParam String revieweremail,
             @Parameter(name="reviewerEmail") @RequestParam String reviewerEmail,
-            @Parameter(name="comments") @RequestParam String comments,
             @Parameter(name="stars") @RequestParam int stars,
-            @Parameter(name="localDateTime", description="date (in iso format, e.g. YYYY-mm-ddTHH:MM:SS; see https://en.wikipedia.org/wiki/ISO_8601)") @RequestParam("localDateTime") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime localDateTime)
+            @Parameter(name="dateReviewed", description="date (in iso format, e.g. YYYY-mm-ddTHH:MM:SS; see https://en.wikipedia.org/wiki/ISO_8601)") @RequestParam("dateReviewed") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateReviewed,
+            @Parameter(name="comments") @RequestParam String comments)
             throws JsonProcessingException {
 
         // For an explanation of @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
         // See: https://www.baeldung.com/spring-date-parameters
 
-        log.info("localDateTime={}", localDateTime);
+        log.info("dateReviewed={}", dateReviewed);
+
 
         MenuItemReview menuItemReview = new MenuItemReview();
         menuItemReview.setItemId(itemId);
         menuItemReview.setReviewerEmail(reviewerEmail);
         menuItemReview.setComments(comments);
         menuItemReview.setStars(stars);
-        //menuItemReview.setLocalDateTime(localDateTime);
-        menuItemReview.setDateReviewed(localDateTime);
+        menuItemReview.setDateReviewed(dateReviewed);
 
        // MenuItemReview savedMenuItemReview = ucsbDateRepository.save(menuItemReview);
 
         //MenuItemReview savedMenuItemReview = ucsbMenuItemReview.save(menuItemReview);
         MenuItemReview savedMenuItemReview = menuItemReviewRepository.save(menuItemReview);
-
-
         return savedMenuItemReview;
     }
 
@@ -136,3 +132,4 @@ public class MenuItemReviewController extends ApiController {
     }
 
 }
+
