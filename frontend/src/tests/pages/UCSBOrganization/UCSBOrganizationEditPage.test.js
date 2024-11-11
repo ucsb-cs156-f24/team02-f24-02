@@ -66,7 +66,7 @@ describe("UCSBOrganizationEditPage tests", () => {
       );
       await screen.findByText("Edit UCSBOrganization");
       expect(
-        screen.queryByTestId("UCSBOrganization-orgCode"),
+        screen.queryByTestId("UCSBOrganizations-orgCode"),
       ).not.toBeInTheDocument();
       restoreConsole();
     });
@@ -137,11 +137,12 @@ describe("UCSBOrganizationEditPage tests", () => {
       expect(submitButton).toHaveTextContent("Update");
 
       fireEvent.change(orgTranslationShortField, {
-        target: { value: "SKY DIVING ORG" },
-      });
-      fireEvent.change(orgTranslationField, {
         target: { value: "SKY DIVING ORG." },
       });
+      fireEvent.change(orgTranslationField, {
+        target: { value: "SKY DIVING ORGANIZATIONS" },
+      });
+      fireEvent.change(inactiveField, { target: { value: "false" } });
       fireEvent.click(submitButton);
 
       await waitFor(() => expect(mockToast).toBeCalled());
@@ -157,8 +158,8 @@ describe("UCSBOrganizationEditPage tests", () => {
         JSON.stringify({
           orgCode: "SKY",
           orgTranslationShort: "SKY DIVING ORG.",
-          orgTranslation: "SKY DIVING ORGANIZATION",
-          inactive: false,
+          orgTranslation: "SKY DIVING ORGANIZATIONS",
+          inactive: "false",
         }),
       ); // posted object
     });
@@ -200,6 +201,7 @@ describe("UCSBOrganizationEditPage tests", () => {
         target: { value: "SKY DIVING ORGANIZATION" },
       });
 
+      fireEvent.change(inactiveField, { target: { value: "true" } });
       fireEvent.click(submitButton);
 
       await waitFor(() => expect(mockToast).toBeCalled());
