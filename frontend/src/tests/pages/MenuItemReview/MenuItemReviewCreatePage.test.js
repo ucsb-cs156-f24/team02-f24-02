@@ -54,7 +54,6 @@ describe("MenuItemReviewCreatePage tests", () => {
         </MemoryRouter>
       </QueryClientProvider>,
     );
-
     await waitFor(() => {
       expect(
         screen.getByTestId("MenuItemReviewForm-itemId"),
@@ -74,7 +73,6 @@ describe("MenuItemReviewCreatePage tests", () => {
     };
 
     axiosMock.onPost("/api/menuitemreviews/post").reply(202, menuItemReview);
-
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
