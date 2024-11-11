@@ -119,9 +119,11 @@ describe("RecommendationRequestCreatePage tests", () => {
     fireEvent.click(createButton);
 
     await waitFor(() => expect(axiosMock.history.post.length).toBe(1));
-    delete recommendationRequest.id;
+    let recRequestCopy = {};
+    Object.assign(recRequestCopy, recommendationRequest);
+    delete recRequestCopy.id;
 
-    expect(axiosMock.history.post[0].params).toEqual(recommendationRequest);
+    expect(axiosMock.history.post[0].params).toEqual(recRequestCopy);
 
     // assert - check that the toast was called with the expected message
     expect(mockToast).toBeCalledWith(
