@@ -7,7 +7,7 @@ const recommendationRequestFixtures = {
       explanation: "I need to get into grad school!",
       dateRequested: "2024-10-30T01:08",
       dateNeeded: "2024-11-21T01:08",
-      done: true,
+      done: "true",
     },
   ],
 
@@ -37,7 +37,7 @@ const recommendationRequestFixtures = {
       explanation: "I just want to know what you think of me",
       dateRequested: "2024-10-30T01:08",
       dateNeeded: "2026-10-30T01:08",
-      done: "true",
+      done: "false",
     },
   ],
 };
