@@ -111,14 +111,10 @@ describe("ArticlesIndexPage tests", () => {
     );
     expect(explanation).toBeInTheDocument();
 
-    const email = screen.getByText(
-      "apiuser@example.com",
-    );
+    const email = screen.getByText("apiuser@example.com");
     expect(email).toBeInTheDocument();
 
-    const dateAdded = screen.getByText(
-      "2023-02-20T09:45:00",
-    );
+    const dateAdded = screen.getByText("2023-02-20T09:45:00");
     expect(dateAdded).toBeInTheDocument();
     // for non-admin users, details button is visible, but the edit and delete buttons should not be visible
     expect(

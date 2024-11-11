@@ -53,14 +53,13 @@ export default function RestaurantTable({
       accessor: "explanation",
     },
     {
-        Header: "Email",
-        accessor: "email",
+      Header: "Email",
+      accessor: "email",
     },
     {
-        Header: "DateAdded",
-        accessor: "dateAdded",
-    }
-
+      Header: "DateAdded",
+      accessor: "dateAdded",
+    },
   ];
 
   if (hasRole(currentUser, "ROLE_ADMIN")) {
@@ -70,7 +69,5 @@ export default function RestaurantTable({
     );
   }
 
-  return (
-    <OurTable data={articles} columns={columns} testid={testIdPrefix} />
-  );
+  return <OurTable data={articles} columns={columns} testid={testIdPrefix} />;
 }

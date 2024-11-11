@@ -18,9 +18,7 @@ export default function ArticlesCreatePage({ storybook = false }) {
   });
 
   const onSuccess = (article) => {
-    toast(
-      `New Article created - id: ${article.id} title: ${article.title}`,
-    );
+    toast(`New Article created - id: ${article.id} title: ${article.title}`);
   };
 
   const mutation = useBackendMutation(

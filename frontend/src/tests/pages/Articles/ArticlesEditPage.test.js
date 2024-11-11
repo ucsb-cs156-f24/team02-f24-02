@@ -118,7 +118,7 @@ describe("ArticlesEditPage tests", () => {
       const urlField = screen.getByTestId("ArticlesForm-url");
       const explanationField = screen.getByTestId("ArticlesForm-explanation");
       const emailField = screen.getByTestId("ArticlesForm-email");
-      const dateAddedField = screen.getByTestId("ArticlesForm-dateAdded")
+      const dateAddedField = screen.getByTestId("ArticlesForm-dateAdded");
       const submitButton = screen.getByTestId("ArticlesForm-submit");
 
       expect(idField).toBeInTheDocument();
@@ -126,13 +126,17 @@ describe("ArticlesEditPage tests", () => {
       expect(titleField).toBeInTheDocument();
       expect(titleField).toHaveValue("Introduction to REST APIs");
       expect(urlField).toBeInTheDocument();
-      expect(urlField).toHaveValue("https://www.redhat.com/en/topics/api/what-is-a-rest-api");
+      expect(urlField).toHaveValue(
+        "https://www.redhat.com/en/topics/api/what-is-a-rest-api",
+      );
       expect(explanationField).toBeInTheDocument();
-      expect(explanationField).toHaveValue("An article introducing RESTful APIs, their uses, and structure.");
+      expect(explanationField).toHaveValue(
+        "An article introducing RESTful APIs, their uses, and structure.",
+      );
       expect(emailField).toBeInTheDocument();
       expect(emailField).toHaveValue("apiuser@example.com");
       expect(dateAddedField).toBeInTheDocument();
-      expect(dateAddedField).toHaveValue("2023-02-20T09:45");//TODO
+      expect(dateAddedField).toHaveValue("2023-02-20T09:45"); //TODO
 
       expect(submitButton).toHaveTextContent("Update");
 
@@ -140,10 +144,15 @@ describe("ArticlesEditPage tests", () => {
         target: { value: "Introduction to REST" },
       });
       fireEvent.change(urlField, {
-        target: { value: "https://www.redhat.com/en/topics/api/what-is-a-rest-api#rest" },
+        target: {
+          value: "https://www.redhat.com/en/topics/api/what-is-a-rest-api#rest",
+        },
       });
       fireEvent.change(explanationField, {
-        target: { value: "REST is a set of architectural constraints, not a protocol or a standard. API developers can implement REST in a variety of ways." },
+        target: {
+          value:
+            "REST is a set of architectural constraints, not a protocol or a standard. API developers can implement REST in a variety of ways.",
+        },
       });
       fireEvent.click(submitButton);
 
@@ -161,7 +170,7 @@ describe("ArticlesEditPage tests", () => {
           title: "Introduction to REST",
           url: "https://www.redhat.com/en/topics/api/what-is-a-rest-api#rest",
           explanation:
-          "REST is a set of architectural constraints, not a protocol or a standard. API developers can implement REST in a variety of ways.",
+            "REST is a set of architectural constraints, not a protocol or a standard. API developers can implement REST in a variety of ways.",
           email: "apiuser@example.com",
           dateAdded: "2023-02-20T09:45:00",
         }),
@@ -184,24 +193,36 @@ describe("ArticlesEditPage tests", () => {
       const urlField = screen.getByTestId("ArticlesForm-url");
       const explanationField = screen.getByTestId("ArticlesForm-explanation");
       const emailField = screen.getByTestId("ArticlesForm-email");
-      const dateAddedField = screen.getByTestId("ArticlesForm-dateAdded")
+      const dateAddedField = screen.getByTestId("ArticlesForm-dateAdded");
       const submitButton = screen.getByTestId("ArticlesForm-submit");
 
-     
       expect(idField).toHaveValue("17");
       expect(titleField).toHaveValue("Introduction to REST APIs");
-      expect(urlField).toHaveValue("https://www.redhat.com/en/topics/api/what-is-a-rest-api");
-      expect(explanationField).toHaveValue("An article introducing RESTful APIs, their uses, and structure.");
+      expect(urlField).toHaveValue(
+        "https://www.redhat.com/en/topics/api/what-is-a-rest-api",
+      );
+      expect(explanationField).toHaveValue(
+        "An article introducing RESTful APIs, their uses, and structure.",
+      );
       expect(emailField).toHaveValue("apiuser@example.com");
-      expect(dateAddedField).toHaveValue("2023-02-20T09:45");//TODO
+      expect(dateAddedField).toHaveValue("2023-02-20T09:45"); //TODO
       expect(submitButton).toBeInTheDocument();
 
       fireEvent.change(titleField, {
         target: { value: "Introduction to REST" },
       });
-      fireEvent.change(urlField, { target: { value: "https://www.redhat.com/en/topics/api/what-is-a-rest-api#rest" } });
-      fireEvent.change(explanationField, { target: { value: "REST is a set of architectural constraints, not a protocol or a standard. API developers can implement REST in a variety of ways." } });
-      
+      fireEvent.change(urlField, {
+        target: {
+          value: "https://www.redhat.com/en/topics/api/what-is-a-rest-api#rest",
+        },
+      });
+      fireEvent.change(explanationField, {
+        target: {
+          value:
+            "REST is a set of architectural constraints, not a protocol or a standard. API developers can implement REST in a variety of ways.",
+        },
+      });
+
       fireEvent.click(submitButton);
 
       await waitFor(() => expect(mockToast).toBeCalled());

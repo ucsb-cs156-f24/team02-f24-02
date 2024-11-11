@@ -104,15 +104,21 @@ describe("ArticlesCreatePage tests", () => {
 
     fireEvent.change(titleInput, { target: { value: "CSS Grid Layout" } });
     fireEvent.change(urlInput, {
-      target: { value: "https://css-tricks.com/snippets/css/complete-guide-grid/" },
+      target: {
+        value: "https://css-tricks.com/snippets/css/complete-guide-grid/",
+      },
     });
     fireEvent.change(explanationInput, {
-      target: { value: "A comprehensive guide on using CSS Grid for layout design."},
+      target: {
+        value: "A comprehensive guide on using CSS Grid for layout design.",
+      },
     });
     fireEvent.change(emailInput, {
-      target: { value: "designer@example.com"},
+      target: { value: "designer@example.com" },
     });
-    fireEvent.change(dateAddedInput, {target: { value: "2023-03-05T17:15:00"}});
+    fireEvent.change(dateAddedInput, {
+      target: { value: "2023-03-05T17:15:00" },
+    });
     fireEvent.click(createButton);
 
     await waitFor(() => expect(axiosMock.history.post.length).toBe(1));
@@ -122,7 +128,7 @@ describe("ArticlesCreatePage tests", () => {
       url: "https://css-tricks.com/snippets/css/complete-guide-grid/",
       explanation: "A comprehensive guide on using CSS Grid for layout design.",
       email: "designer@example.com",
-      dateAdded: "2023-03-05T17:15",//TODO
+      dateAdded: "2023-03-05T17:15", //TODO
     });
 
     // assert - check that the toast was called with the expected message

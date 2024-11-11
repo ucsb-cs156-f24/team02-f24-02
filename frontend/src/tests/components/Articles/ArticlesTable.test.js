@@ -1,5 +1,5 @@
 import { fireEvent, render, waitFor, screen } from "@testing-library/react";
-import { articleFixtures} from "fixtures/articlesFixtures";
+import { articleFixtures } from "fixtures/articlesFixtures";
 import ArticlesTable from "main/components/Articles/ArticlesTable";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
@@ -17,8 +17,22 @@ jest.mock("react-router-dom", () => ({
 describe("ArticlesTable tests", () => {
   const queryClient = new QueryClient();
 
-  const expectedHeaders = ["id", "Title", "Url", "Explanation", "Email", "DateAdded"];
-  const expectedFields = ["id", "title", "url","explanation", "email", "dateAdded"];
+  const expectedHeaders = [
+    "id",
+    "Title",
+    "Url",
+    "Explanation",
+    "Email",
+    "DateAdded",
+  ];
+  const expectedFields = [
+    "id",
+    "title",
+    "url",
+    "explanation",
+    "email",
+    "dateAdded",
+  ];
   const testId = "ArticlesTable";
 
   test("renders empty table correctly", () => {
