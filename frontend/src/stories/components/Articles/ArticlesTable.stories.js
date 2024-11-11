@@ -1,6 +1,6 @@
 import React from "react";
 import ArticlesTable from "main/components/Articles/ArticlesTable";
-import { articleFixures } from "fixtures/articlesFixtures";
+import { articleFixtures } from "fixtures/articlesFixtures";
 import { currentUserFixtures } from "fixtures/currentUserFixtures";
 import { http, HttpResponse } from "msw";
 
@@ -23,13 +23,13 @@ Empty.args = {
 export const ThreeItemsOrdinaryUser = Template.bind({});
 
 ThreeItemsOrdinaryUser.args = {
-  articles: articleFixures.threeArticles,
+  articles: articleFixtures.threeArticles,
   currentUser: currentUserFixtures.userOnly,
 };
 
 export const ThreeItemsAdminUser = Template.bind({});
 ThreeItemsAdminUser.args = {
-  articles: articleFixures.threeArticles,
+  articles: articleFixtures.threeArticles,
   currentUser: currentUserFixtures.adminUser,
 };
 
