@@ -1,7 +1,7 @@
 import React from "react";
 import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
-import { articlesFixtures } from "fixtures/articlesFixtures";
+import { articleFixtures } from "fixtures/articlesFixtures";
 import { http, HttpResponse } from "msw";
 
 import ArticlesIndexPage from "main/pages/Articles/ArticlesIndexPage";
@@ -43,7 +43,7 @@ ThreeItemsOrdinaryUser.parameters = {
       return HttpResponse.json(systemInfoFixtures.showingNeither);
     }),
     http.get("/api/articles/all", () => {
-      return HttpResponse.json(articlesFixtures.threeArticles);
+      return HttpResponse.json(articleFixtures.threeArticles);
     }),
   ],
 };
@@ -59,7 +59,7 @@ ThreeItemsAdminUser.parameters = {
       return HttpResponse.json(systemInfoFixtures.showingNeither);
     }),
     http.get("/api/articles/all", () => {
-      return HttpResponse.json(articlesFixtures.threeArticles);
+      return HttpResponse.json(articleFixtures.threeArticles);
     }),
     http.delete("/api/articles", () => {
       return HttpResponse.json(
