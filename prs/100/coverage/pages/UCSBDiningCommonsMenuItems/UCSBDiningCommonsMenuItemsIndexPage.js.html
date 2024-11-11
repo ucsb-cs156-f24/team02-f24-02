@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for pages/UCSBOrganization/UCSBOrganizationIndexPage.js</title>
+    <title>Code coverage report for pages/UCSBDiningCommonsMenuItems/UCSBDiningCommonsMenuItemsIndexPage.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">pages/UCSBOrganization</a> UCSBOrganizationIndexPage.js</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">pages/UCSBDiningCommonsMenuItems</a> UCSBDiningCommonsMenuItemsIndexPage.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -112,8 +112,7 @@
 <a name='L47'></a><a href='#L47'>47</a>
 <a name='L48'></a><a href='#L48'>48</a>
 <a name='L49'></a><a href='#L49'>49</a>
-<a name='L50'></a><a href='#L50'>50</a>
-<a name='L51'></a><a href='#L51'>51</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L50'></a><a href='#L50'>50</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -122,22 +121,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -150,7 +137,18 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -167,46 +165,45 @@
 import { useBackend } from "main/utils/useBackend";
 &nbsp;
 import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
-import UCSBOrganizationsTable from "main/components/UCSBOrganization/UCSBOrganizationTable";
-import { useCurrentUser, hasRole } from "main/utils/currentUser";
+import UCSBDiningCommonsMenuItemsTable from "main/components/UCSBDiningCommonsMenuItems/UCSBDiningCommonsMenuItemsTable";
 import { Button } from "react-bootstrap";
+import { useCurrentUser, hasRole } from "main/utils/currentUser";
 &nbsp;
-export default function UCSBOrganizationIndexPage() {
+export default function UCSBDiningCommonsMenuItemsIndexPage() {
   const currentUser = useCurrentUser();
-&nbsp;
-  const {
-    data: ucsborganizations,
-    error: _error,
-    status: _status,
-  } = useBackend(
-    // Stryker disable next-line all : don't test internal caching of React Query
-    ["/api/ucsborganizations/all"],
-    { method: "GET", url: "/api/ucsborganizations/all" },
-    // Stryker disable next-line all : don't test default value of empty list
-    [],
-  );
 &nbsp;
   const createButton = () =&gt; {
     if (hasRole(currentUser, "ROLE_ADMIN")) {
       return (
         &lt;Button
           variant="primary"
-          href="/ucsborganizations/create"
+          href="/ucsbdiningcommonsmenuitems/create"
           style={{ float: "right" }}
         &gt;
-          Create UCSBOrganization
+          Create UCSBDiningCommonsMenuItems
         &lt;/Button&gt;
       );
     }
   };
 &nbsp;
+  const {
+    data: items,
+    error: _error,
+    status: _status,
+  } = useBackend(
+    // Stryker disable next-line all : don't test internal caching of React Query
+    ["/api/ucsbdiningcommonsmenuitems/all"],
+    { method: "GET", url: "/api/ucsbdiningcommonsmenuitems/all" },
+    [],
+  );
+&nbsp;
   return (
     &lt;BasicLayout&gt;
       &lt;div className="pt-2"&gt;
         {createButton()}
-        &lt;h1&gt;UCSBOrganization&lt;/h1&gt;
-        &lt;UCSBOrganizationsTable
-          UCSBOrganizations={ucsborganizations}
+        &lt;h1&gt;UCSBDiningCommonsMenuItems&lt;/h1&gt;
+        &lt;UCSBDiningCommonsMenuItemsTable
+          ucsbDiningCommonsMenuItems={items}
           currentUser={currentUser}
         /&gt;
       &lt;/div&gt;
