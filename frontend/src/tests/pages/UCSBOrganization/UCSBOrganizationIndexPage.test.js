@@ -24,7 +24,6 @@ jest.mock("react-toastify", () => {
 
 describe("UCSBOrganizationIndexPage tests", () => {
   const axiosMock = new AxiosMockAdapter(axios);
-
   const testId = "UCSBOrganizationsTable";
 
   const setupUserOnly = () => {
