@@ -24,7 +24,7 @@ Create.args = {
 export const Update = Template.bind({});
 
 Update.args = {
-  initialContents: menuItemReviewFixtures.oneDate,
+  initialContents: menuItemReviewFixtures.oneReview,
   buttonLabel: "Update",
   submitAction: (data) => {
     console.log("Submit was clicked with data: ", data);

@@ -24,6 +24,7 @@ jest.mock("react-toastify", () => {
 
 describe("UCSBOrganizationIndexPage tests", () => {
   const axiosMock = new AxiosMockAdapter(axios);
+  const testId = "UCSBOrganizationsTable";
 
   const testId = "UCSBOrganizationsTable";
 
@@ -119,10 +120,12 @@ describe("UCSBOrganizationIndexPage tests", () => {
 
     // for non-admin users, details button is visible, but the edit and delete buttons should not be visible
     expect(
-      screen.queryByTestId("RestaurantTable-cell-row-0-col-Delete-button"),
+      screen.queryByTestId(
+        "UCSBOrganizationsTable-cell-row-0-col-Delete-button",
+      ),
     ).not.toBeInTheDocument();
     expect(
-      screen.queryByTestId("RestaurantTable-cell-row-0-col-Edit-button"),
+      screen.queryByTestId("UCSBOrganizationsTable-cell-row-0-col-Edit-button"),
     ).not.toBeInTheDocument();
   });
 
@@ -130,7 +133,6 @@ describe("UCSBOrganizationIndexPage tests", () => {
     setupUserOnly();
 
     axiosMock.onGet("/api/ucsborganizations/all").timeout();
-
     const restoreConsole = mockConsole();
 
     render(
