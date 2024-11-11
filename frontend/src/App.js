@@ -162,7 +162,6 @@ function App() {
             />
           </>
         )}
-<<<<<<< HEAD
         {
       hasRole(currentUser, "ROLE_USER") && (
         <>
@@ -178,7 +177,6 @@ function App() {
         </>
       )
       }
-=======
         {hasRole(currentUser, "ROLE_USER") && (
           <>
             <Route
@@ -225,7 +223,6 @@ function App() {
             />
           </>
         )}
->>>>>>> c5facaa62f91c0267a92d4e5e58db3c8a4aec458
       </Routes>
     </BrowserRouter>
   );
