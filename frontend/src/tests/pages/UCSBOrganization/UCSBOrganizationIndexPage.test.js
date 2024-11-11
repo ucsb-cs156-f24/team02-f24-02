@@ -26,8 +26,6 @@ describe("UCSBOrganizationIndexPage tests", () => {
   const axiosMock = new AxiosMockAdapter(axios);
   const testId = "UCSBOrganizationsTable";
 
-  const testId = "UCSBOrganizationsTable";
-
   const setupUserOnly = () => {
     axiosMock.reset();
     axiosMock.resetHistory();
