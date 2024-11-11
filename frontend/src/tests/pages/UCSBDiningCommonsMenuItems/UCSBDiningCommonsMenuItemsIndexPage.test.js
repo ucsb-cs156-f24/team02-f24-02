@@ -1,10 +1,11 @@
 import { fireEvent, render, waitFor, screen } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
-import MenuItemReviewIndexPage from "main/pages/MenuItemReview/MenuItemReviewIndexPage";
+import UCSBDiningCommonsMenuItemsIndexPage from "main/pages/UCSBDiningCommonsMenuItems/UCSBDiningCommonsMenuItemsIndexPage";
+
 import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
-import { menuItemReviewFixtures } from "fixtures/menuItemReviewFixtures";
+import { ucsbDiningCommonsMenuItemsFixtures } from "fixtures/ucsbDiningCommonsMenuItemsFixtures";
 import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
 import mockConsole from "jest-mock-console";
@@ -19,19 +20,10 @@ jest.mock("react-toastify", () => {
   };
 });
 
-const mockToast = jest.fn();
-jest.mock("react-toastify", () => {
-  const originalModule = jest.requireActual("react-toastify");
-  return {
-    __esModule: true,
-    ...originalModule,
-    toast: (x) => mockToast(x),
-  };
-});
-describe("MenuItemReviewIndexPage tests", () => {
+describe("UCSBDiningCommonsMenuItemsIndexPage tests", () => {
   const axiosMock = new AxiosMockAdapter(axios);
 
-  const testId = "MenuItemReviewTable";
+  const testId = "UCSBDiningCommonsMenuItemsTable";
 
   const setupUserOnly = () => {
     axiosMock.reset();
@@ -59,39 +51,47 @@ describe("MenuItemReviewIndexPage tests", () => {
     // arrange
     setupAdminUser();
     const queryClient = new QueryClient();
-    axiosMock.onGet("/api/menuitemreviews/all").reply(200, []);
+    axiosMock.onGet("/api/ucsbdiningcommonsmenuitems/all").reply(200, []);
 
     // act
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <MenuItemReviewIndexPage />
+          <UCSBDiningCommonsMenuItemsIndexPage />
         </MemoryRouter>
       </QueryClientProvider>,
     );
 
     // assert
     await waitFor(() => {
-      expect(screen.getByText(/Create MenuItemReview/)).toBeInTheDocument();
+      expect(
+        screen.getByText(/Create UCSBDiningCommonsMenuItems/),
+      ).toBeInTheDocument();
     });
-    const button = screen.getByText(/Create MenuItemReview/);
-    expect(button).toHaveAttribute("href", "/menuitemreviews/create");
+    const button = screen.getByText(/Create UCSBDiningCommonsMenuItems/);
+    expect(button).toHaveAttribute(
+      "href",
+      "/ucsbdiningcommonsmenuitems/create",
+    );
     expect(button).toHaveAttribute("style", "float: right;");
   });
 
-  test("renders three reviews correctly for regular user", async () => {
+  test("renders three ucsbdiningcommonsmenuitems correctly for regular user", async () => {
     // arrange
     setupUserOnly();
     const queryClient = new QueryClient();
     axiosMock
-      .onGet("/api/menuitemreviews/all")
-      .reply(200, menuItemReviewFixtures.threeReviews);
+      .onGet("/api/ucsbdiningcommonsmenuitems/all")
+      .reply(
+        200,
+        ucsbDiningCommonsMenuItemsFixtures.threeUCSBDiningCommonsMenuItems,
+      );
 
     // act
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <MenuItemReviewIndexPage />
+          <UCSBDiningCommonsMenuItemsIndexPage />
         </MemoryRouter>
       </QueryClientProvider>,
     );
@@ -110,21 +110,23 @@ describe("MenuItemReviewIndexPage tests", () => {
     );
 
     // assert that the Create button is not present when user isn't an admin
-    expect(screen.queryByText(/Create MenuItemReview/)).not.toBeInTheDocument();
+    expect(
+      screen.queryByText(/Create UCSBDiningCommonsMenuItems/),
+    ).not.toBeInTheDocument();
   });
 
   test("renders empty table when backend unavailable, user only", async () => {
     // arrange
     setupUserOnly();
     const queryClient = new QueryClient();
-    axiosMock.onGet("/api/menuitemreviews/all").timeout();
+    axiosMock.onGet("/api/ucsbdiningcommonsmenuitems/all").timeout();
     const restoreConsole = mockConsole();
 
     // act
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <MenuItemReviewIndexPage />
+          <UCSBDiningCommonsMenuItemsIndexPage />
         </MemoryRouter>
       </QueryClientProvider>,
     );
@@ -136,7 +138,7 @@ describe("MenuItemReviewIndexPage tests", () => {
 
     const errorMessage = console.error.mock.calls[0][0];
     expect(errorMessage).toMatch(
-      "Error communicating with backend via GET on /api/menuitemreviews/all",
+      "Error communicating with backend via GET on /api/ucsbdiningcommonsmenuitems/all",
     );
     restoreConsole();
 
@@ -150,17 +152,20 @@ describe("MenuItemReviewIndexPage tests", () => {
     setupAdminUser();
     const queryClient = new QueryClient();
     axiosMock
-      .onGet("/api/menuitemreviews/all")
-      .reply(200, menuItemReviewFixtures.threeReviews);
+      .onGet("/api/ucsbdiningcommonsmenuitems/all")
+      .reply(
+        200,
+        ucsbDiningCommonsMenuItemsFixtures.threeUCSBDiningCommonsMenuItems,
+      );
     axiosMock
-      .onDelete("/api/menuitemreviews")
-      .reply(200, "MenuItemReview with id 1 was deleted");
+      .onDelete("/api/ucsbdiningcommonsmenuitems")
+      .reply(200, "UCSBDiningCommonsMenuItems with id 1 was deleted");
 
     // act
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <MenuItemReviewIndexPage />
+          <UCSBDiningCommonsMenuItemsIndexPage />
         </MemoryRouter>
       </QueryClientProvider>,
     );
@@ -186,7 +191,9 @@ describe("MenuItemReviewIndexPage tests", () => {
 
     // assert
     await waitFor(() => {
-      expect(mockToast).toBeCalledWith("MenuItemReview with id 1 was deleted");
+      expect(mockToast).toBeCalledWith(
+        "UCSBDiningCommonsMenuItems with id 1 was deleted",
+      );
     });
   });
 });
