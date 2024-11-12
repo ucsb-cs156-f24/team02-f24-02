@@ -63,12 +63,12 @@ describe("HelpRequestCreatePage tests", () => {
     const queryClient = new QueryClient();
     const helpRequest = {
       id: 1,
-      requesterEmail: "tester1@hotmail.com",
-      teamId: "01",
-      tableOrBreakoutRoom: "table",
-      requestTime: "2024-11-06T22:22",
-      explanation: "Dokku issue",
-      solved: false,
+      requesterEmail: "cgaucho@ucsb.edu",
+      teamId: "s22-5pm-3",
+      tableOrBreakoutRoom: "7",
+      requestTime: "2022-01-03T00:00:00",
+      explanation: "Need help with Swagger-ui",
+      solved: "true",
     };
 
     axiosMock.onPost("/api/helprequests/post").reply(202, helpRequest);
@@ -97,16 +97,18 @@ describe("HelpRequestCreatePage tests", () => {
     const solvedField = screen.getByTestId("HelpRequestForm-solved");
 
     fireEvent.change(requesterEmailField, {
-      target: { value: "tester1@hotmail.com" },
+      target: { value: "cgaucho@ucsb.edu" },
     });
-    fireEvent.change(teamIdField, { target: { value: "01" } });
+    fireEvent.change(teamIdField, { target: { value: "s22-5pm-3" } });
     fireEvent.change(tableOrBreakoutRoomField, {
-      target: { value: "table" },
+      target: { value: "7" },
     });
     fireEvent.change(requestTimeField, {
-      target: { value: "2024-11-06T22:22" },
+      target: { value: "2022-01-03T00:00:00" },
     });
-    fireEvent.change(explanationField, { target: { value: "Dokku issue" } });
+    fireEvent.change(explanationField, {
+      target: { value: "Need help with Swagger-ui" },
+    });
 
     fireEvent.click(solvedField);
     fireEvent.click(solvedField);
@@ -118,16 +120,16 @@ describe("HelpRequestCreatePage tests", () => {
     await waitFor(() => expect(axiosMock.history.post.length).toBe(1));
 
     expect(axiosMock.history.post[0].params).toEqual({
-      requesterEmail: "tester1@hotmail.com",
-      teamId: "01",
-      tableOrBreakoutRoom: "table",
-      requestTime: "2024-11-06T22:22",
-      explanation: "Dokku issue",
+      requesterEmail: "cgaucho@ucsb.edu",
+      teamId: "s22-5pm-3",
+      tableOrBreakoutRoom: "7",
+      requestTime: "2022-01-03T00:00",
+      explanation: "Need help with Swagger-ui",
       solved: false,
     });
 
     expect(mockToast).toBeCalledWith(
-      "New helpRequest Created - id: 1 team: 01",
+      "New helpRequest Created - id: 1 team: s22-5pm-3",
     );
     expect(mockNavigate).toBeCalledWith({ to: "/helprequests" });
   });
