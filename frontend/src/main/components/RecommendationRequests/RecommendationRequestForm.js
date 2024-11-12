@@ -143,13 +143,15 @@ function RestaurantForm({
             aria-label="Request is done?"
             data-testid={testIdPrefix + "-done"}
             id="done"
+            {...register("done")}
           >
-            <option value="true">true</option>
-            <option value="false">false</option>
+            <option key="true" value="true">
+              true
+            </option>
+            <option key="false" value="false">
+              false
+            </option>
           </Form.Select>
-          <Form.Control.Feedback type="invalid">
-            {errors.done?.message}
-          </Form.Control.Feedback>
         </Form.Group>
       </Row>
       <Button type="submit" data-testid={testIdPrefix + "-submit"}>
