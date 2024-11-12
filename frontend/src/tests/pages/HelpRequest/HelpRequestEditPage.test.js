@@ -84,21 +84,21 @@ describe("HelpRequestEditPage tests", () => {
         .reply(200, systemInfoFixtures.showingNeither);
       axiosMock.onGet("/api/helprequests", { params: { id: 17 } }).reply(200, {
         id: 1,
-        requesterEmail: "tester1@hotmail.com",
-        teamId: "01",
-        tableOrBreakoutRoom: "table",
-        requestTime: "2024-11-06T22:22",
-        explanation: "Dokku issue",
+        requesterEmail: "cgaucho@ucsb.edu",
+        teamId: "s22-5pm-3",
+        tableOrBreakoutRoom: "7",
+        requestTime: "2022-01-03T00:00:00",
+        explanation: "Need help with Swagger-ui",
         solved: false,
       });
       axiosMock.onPut("/api/helprequests").reply(200, {
         id: 1,
-        requesterEmail: "tester1@hotmail.com",
-        teamId: "01",
-        tableOrBreakoutRoom: "table",
-        requestTime: "2024-11-06T22:22",
-        explanation: "Git issue",
-        solved: true,
+        requesterEmail: "cgaucho@ucsb.edu",
+        teamId: "s22-5pm-3",
+        tableOrBreakoutRoom: "7",
+        requestTime: "2022-01-03T00:00:00",
+        explanation: "Need help with Swagger-ui",
+        solved: false,
       });
     });
 
@@ -140,11 +140,11 @@ describe("HelpRequestEditPage tests", () => {
       const solvedCheckbox = screen.getByTestId("HelpRequestForm-solved");
       const submitButton = screen.getByTestId("HelpRequestForm-submit");
 
-      expect(emailField).toHaveValue("tester1@hotmail.com");
-      expect(teamIdField).toHaveValue("01");
-      expect(roomField).toHaveValue("table");
-      expect(requestTimeField).toHaveValue("2024-11-06T22:22");
-      expect(explanationField).toHaveValue("Dokku issue");
+      expect(emailField).toHaveValue("cgaucho@ucsb.edu");
+      expect(teamIdField).toHaveValue("s22-5pm-3");
+      expect(roomField).toHaveValue("7");
+      expect(requestTimeField).toHaveValue("2022-01-03T00:00");
+      expect(explanationField).toHaveValue("Need help with Swagger-ui");
       expect(solvedCheckbox).not.toBeChecked();
       expect(submitButton).toHaveTextContent("Update");
     });
@@ -166,14 +166,14 @@ describe("HelpRequestEditPage tests", () => {
       const submitButton = screen.getByTestId("HelpRequestForm-submit");
 
       fireEvent.change(explanationField, {
-        target: { value: "Git issue" },
+        target: { value: "Need help with Swagger-ui" },
       });
       fireEvent.click(solvedCheckbox);
       fireEvent.click(submitButton);
 
       await waitFor(() => expect(mockToast).toBeCalled());
       expect(mockToast).toBeCalledWith(
-        "Help Request Updated - id: 1 Team ID: 01",
+        "Help Request Updated - id: 1 Team ID: s22-5pm-3",
       );
       expect(mockNavigate).toBeCalledWith({ to: "/helprequests" });
 
@@ -181,11 +181,11 @@ describe("HelpRequestEditPage tests", () => {
       expect(axiosMock.history.put[0].params).toEqual({ id: 1 });
       expect(axiosMock.history.put[0].data).toBe(
         JSON.stringify({
-          requesterEmail: "tester1@hotmail.com",
-          teamId: "01",
-          tableOrBreakoutRoom: "table",
-          requestTime: "2024-11-06T22:22",
-          explanation: "Git issue",
+          requesterEmail: "cgaucho@ucsb.edu",
+          teamId: "s22-5pm-3",
+          tableOrBreakoutRoom: "7",
+          requestTime: "2022-01-03T00:00:00",
+          explanation: "Need help with Swagger-ui",
           solved: true,
         }),
       ); // posted object
