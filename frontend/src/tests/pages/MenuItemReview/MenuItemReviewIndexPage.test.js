@@ -7,6 +7,7 @@ import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
 import { menuItemReviewFixtures } from "fixtures/menuItemReviewFixtures";
 import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
+
 import mockConsole from "jest-mock-console";
 
 const mockToast = jest.fn();
@@ -22,6 +23,7 @@ describe("MenuItemReviewIndexPage tests", () => {
   const axiosMock = new AxiosMockAdapter(axios);
 
   const testId = "MenuItemReviewTable";
+
   const setupUserOnly = () => {
     axiosMock.reset();
     axiosMock.resetHistory();
