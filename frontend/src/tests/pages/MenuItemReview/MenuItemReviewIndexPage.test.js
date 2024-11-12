@@ -19,7 +19,6 @@ jest.mock("react-toastify", () => {
   };
 });
 
-const mockToast = jest.fn();
 jest.mock("react-toastify", () => {
   const originalModule = jest.requireActual("react-toastify");
   return {
