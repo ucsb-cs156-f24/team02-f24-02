@@ -339,7 +339,6 @@ jobs:
               $count = if ($assignees[$assignee].ContainsKey($column)) { "$($assignees[$assignee][$column])" } else { "0" }
               $leftAlignedCount = printf "%4s" $count
               $row += " $leftAlignedCount |"
-
             }
             $table += "$row`n"
           }
