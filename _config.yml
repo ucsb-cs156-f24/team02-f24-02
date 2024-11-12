@@ -20,4 +20,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-f24/team02-f24-02
 owner: ucsb-cs156-f24
 repo_name: team02-f24-02
-pull_requests: [{"author":{"id":"U_kgDOBuPHZA","is_bot":false,"login":"leozhu0","name":""},"headRefName":"leozhu0-team03-WebIT","number":117,"title":"UCSBDiningCommonsMenuItems End to End Test","url":"https://github.com/ucsb-cs156-f24/team02-f24-02/pull/117"},{"author":{"id":"U_kgDOBuPHZA","is_bot":false,"login":"leozhu0","name":""},"headRefName":"leozhu0-team03-IT","number":116,"title":"UCSBDiningCommonsMenuItems Integration Test","url":"https://github.com/ucsb-cs156-f24/team02-f24-02/pull/116"},{"author":{"id":"MDQ6VXNlcjY1ODc1MjE3","is_bot":false,"login":"rushil-x-gupta","name":""},"headRefName":"rg-HelpRequest-edit","number":115,"title":"rg - implemented edit","url":"https://github.com/ucsb-cs156-f24/team02-f24-02/pull/115"}]
+pull_requests: [{"author":{"id":"MDQ6VXNlcjY1ODc1MjE3","is_bot":false,"login":"rushil-x-gupta","name":""},"headRefName":"rg-HelpRequest-edit","number":115,"title":"rg - implemented edit","url":"https://github.com/ucsb-cs156-f24/team02-f24-02/pull/115"}]
